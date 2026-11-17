@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Create your AgriRent account - Farmer or Equipment Owner.">
+<title>Create Account | AgriRent</title>
+<style>
+:root {
+  --green: #1b5e20;
+  --green2: #2e7d32;
+  --lime: #8bc34a;
+  --ink: #183322;
+  --muted: #5e7063;
+  --cream: #f6f8f1;
+  --line: #e2e8dc;
+  --white: #ffffff;
+  --shadow: 0 16px 36px rgba(25, 70, 35, 0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(125deg, #f3f8ed 0%, #e6f2de 100%);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+button, input, select { font: inherit; }
+
+header {
+  height: 74px;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  width: min(1080px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: #e8f5e9;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+}
+
+.back-link {
+  font-weight: 700;
+  color: var(--green2);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--green); }
+
+main {
+  padding: 44px 0 60px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.intro .eyebrow {
+  display: inline-block;
+  background: #e2f0dc;
+  color: var(--green2);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: clamp(32px, 4.2vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+  margin: 18px 0 14px;
+  color: #15381f;
+}
+
+.intro p {
+  color: var(--muted);
+  max-width: 420px;
+  font-size: 15px;
+}
+
+.points {
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.point {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #274530;
+}
+
+.check {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e3f2dc;
+  color: var(--green2);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Card */
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  font-size: 24px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field { margin-bottom: 14px; }
+.field.full { grid-column: 1 / -1; }
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #445949;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+input, select {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdf9;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: var(--green2);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+}
+
+.btn {
+  width: 100%;
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 18px;
+  background: var(--green2);
+  color: var(--white);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+.btn:hover { background: var(--green); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.terms {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 14px;
+  text-align: center;
+}
+
+.login {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 18px;
+}
+.login a {
+  color: var(--green2);
+  font-weight: 800;
+}
+
+.message {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.message.error { background: #ffebee; color: #c62828; }
+.message.success { background: #e8f5e9; color: #2e7d32; }
+
+@media (max-width: 780px) {
+  .layout { grid-template-columns: 1fr; gap: 32px; }
+  .intro { text-align: center; }
+  .intro p { margin: 0 auto; }
+  .points { max-width: 340px; margin: 20px auto 0; text-align: left; }
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+  .field.full { grid-column: auto; }
+  .card { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">🌱</span>AgriRent
+    </a>
+    <a class="back-link" href="index.html">← Back to Marketplace</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+    <!-- Intro Column -->
+    <section class="intro">
+      <span class="eyebrow">🌿 Join the Community</span>
+      <h1>Let's Grow<br><span style="color:var(--green2)">Together.</span></h1>
+      <p>Create your AgriRent account to rent agricultural machinery or earn revenue by listing equipment for local farmers.</p>
+      <div class="points">
+        <div class="point"><span class="check">✓</span> Discover tractors, harvesters, & tillers</div>
+        <div class="point"><span class="check">✓</span> Save capital and farm smarter</div>
+        <div class="point"><span class="check">✓</span> Equipment owners earn steady rental income</div>
+      </div>
+    </section>
+
+    <!-- Registration Card -->
+    <section class="card">
+      <h2>Create Your Account</h2>
+      <p class="sub">Quick registration connected directly to our SQLite database.</p>
+
+      <form id="signupForm">
+        <div class="grid">
+          <div class="field full">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" placeholder="e.g. Ramesh Patel" autocomplete="name" required>
+          </div>
+
+          <div class="field full">
+            <label for="role">I Want to Join As</label>
+            <select id="role" name="role" required>
+              <option value="Farmer">👨‍🌾 Farmer (Rent Machinery)</option>
+              <option value="Equipment Owner">🚜 Equipment Owner (List & Earn)</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="phone">Mobile Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="10-digit mobile number" autocomplete="tel" pattern="[0-9+() -]{10,15}" required>
+          </div>
+
+          <div class="field full">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="At least 6 characters" minlength="6" autocomplete="new-password" required>
+          </div>
+
+          <div class="field">
+            <label for="confirm">Confirm Password</label>
+            <input id="confirm" name="confirm" type="password" placeholder="Re-enter password" minlength="6" autocomplete="new-password" required>
+          </div>
+        </div>
+
+        <button class="btn" type="submit" id="submitBtn">Create Account →</button>
+        <div class="message" id="messageBox" role="status"></div>
+        <p class="terms">By registering, you agree to use AgriRent responsibly.</p>
+      </form>
+
+      <p class="login">Already have an account? <a href="index.html" id="loginLink">Log in here</a></p>
+    </section>
+  </div>
+</main>
+
+<script>
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const f = e.target;
+  const msg = document.getElementById('messageBox');
+  const btn = document.getElementById('submitBtn');
+
+  msg.style.display = 'none';
+  msg.className = 'message';
+
+  if (f.password.value !== f.confirm.value) {
+    msg.textContent = 'Passwords do not match. Please re-enter passwords.';
+    msg.classList.add('error');
+    msg.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating account...';
+
+  try {
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: f.name.value,
+        role: f.role.value,
+        phone: f.phone.value,
+        email: f.email.value,
+        password: f.password.value,
+        confirm: f.confirm.value
+      })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      msg.textContent = data.error || 'Registration failed.';
+      msg.classList.add('error');
+      msg.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Create Account →';
+      return;
+    }
+
+    msg.textContent = `Account created successfully! Welcome, ${data.user.name}. Redirecting to dashboard...`;
+    msg.classList.add('success');
+    msg.style.display = 'block';
+
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 1000);
+  } catch (err) {
+    msg.textContent = 'Network or server error. Please ensure the backend is running.';
+    msg.classList.add('error');
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Create Account →';
+  }
+});
+
+document.getElementById('loginLink').addEventListener('click', function(e) {
+  e.preventDefault();
+  sessionStorage.setItem('openLogin', '1');
+  window.location.href = 'index.html';
+});
+</script>
+</body>
+</html>

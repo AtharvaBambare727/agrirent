@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AgriRent - Discover, rent, and share reliable agricultural equipment easily.">
+<title>AgriRent | Agricultural Equipment Rental System</title>
+<style>
+:root {
+  --green: #1b5e20;
+  --green2: #2e7d32;
+  --green-light: #e8f5e9;
+  --lime: #8bc34a;
+  --ink: #183322;
+  --muted: #5e7063;
+  --cream: #f6f8f1;
+  --line: #e2e8dc;
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --shadow-sm: 0 4px 12px rgba(25, 70, 35, 0.06);
+  --shadow: 0 16px 36px rgba(25, 70, 35, 0.10);
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: #fbfdf9;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+/* Header & Navigation */
+header {
+  height: 76px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: -0.5px;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--green-light);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3b4e41;
+}
+
+.navlinks a {
+  padding: 6px 4px;
+  transition: color 0.2s;
+}
+.navlinks a:hover { color: var(--green2); }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--green2);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.25);
+}
+.btn-primary:hover {
+  background: var(--green);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 1.5px solid var(--green2);
+  background: transparent;
+  color: var(--green2);
+}
+.btn-outline:hover {
+  background: var(--green-light);
+}
+
+.btn-secondary {
+  background: #e9f3e4;
+  color: var(--green);
+}
+.btn-secondary:hover {
+  background: #d8ebd2;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  font-size: 26px;
+  color: var(--green);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(130deg, #f2f8ed 0%, #eaf4e5 50%, #dff0d8 100%);
+  padding: 55px 0 65px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green2);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #e2f0db;
+  padding: 6px 14px;
+  border-radius: 30px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 4.6vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  margin: 18px 0 16px;
+  color: #14351d;
+}
+
+.hero h1 span { color: var(--green2); }
+
+.hero-copy {
+  font-size: 16px;
+  color: #556758;
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 28px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(46, 125, 50, 0.15);
+}
+
+.hero-stat strong {
+  display: block;
+  font-size: 22px;
+  color: var(--green);
+}
+.hero-stat span {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.hero-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.hero-card-art {
+  width: 100%;
+  max-width: 440px;
+  height: 340px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #d3e8c7, #85b86f);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+}
+
+.tractor-big {
+  font-size: 140px;
+  filter: drop-shadow(0 14px 12px rgba(25, 70, 35, 0.25));
+  z-index: 2;
+}
+
+.floating-badge {
+  position: absolute;
+  background: var(--white);
+  padding: 12px 18px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  z-index: 3;
+}
+.floating-badge.badge-1 { top: 20px; left: -10px; }
+.floating-badge.badge-2 { bottom: 20px; right: -10px; }
+.floating-badge strong { display: block; font-size: 17px; color: var(--green); }
+.floating-badge small { font-size: 11px; color: var(--muted); }
+
+/* Search & Filter Bar */
+.search-container {
+  margin-top: -38px;
+  position: relative;
+  z-index: 20;
+}
+
+.search-box {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4b5d4f;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.field input, .field select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fbfdf9;
+  color: var(--ink);
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.field input:focus, .field select:focus {
+  border-color: var(--green2);
+  background: var(--white);
+}
+
+/* Sections Common */
+.section { padding: 75px 0; }
+.section-soft { background: var(--cream); }
+
+.section-head {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 42px;
+}
+
+.section-head .eyebrow { margin-bottom: 12px; }
+.section-head h2 {
+  font-size: clamp(28px, 3.5vw, 38px);
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  color: #173b21;
+}
+.section-head p { color: var(--muted); font-size: 15px; }
+
+/* Category Pills Filter */
+.category-pills {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.cat-pill {
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: #425546;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cat-pill:hover, .cat-pill.active {
+  background: var(--green2);
+  color: var(--white);
+  border-color: var(--green2);
+}
+
+/* Equipment Grid */
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.equipment-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.equipment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.equipment-art {
+  height: 165px;
+  background: linear-gradient(135deg, #eaf4e5, #cfe6c6);
+  display: grid;
+  place-items: center;
+  font-size: 75px;
+  position: relative;
+}
+
+.equipment-art.orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+.equipment-art.blue { background: linear-gradient(135deg, #e1f5fe, #b3e5fc); }
+
+.badge-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--green2);
+}
+
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.status-available { background: #e8f5e9; color: #1b5e20; }
+.status-busy { background: #ffebee; color: #c62828; }
+
+.equipment-body {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.equipment-category {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--green2);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.equipment-body h3 {
+  font-size: 18px;
+  color: #173820;
+  margin-bottom: 6px;
+}
+
+.equipment-body .location {
+  font-size: 13px;
+  color: #647669;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.equipment-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+  flex: 1;
+}
+
+.equipment-footer {
+  border-top: 1px solid #f0f3ed;
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price-tag {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--green);
+}
+.price-tag small {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-sm {
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+/* Empty State & Loader */
+.state-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 20px;
+  background: var(--white);
+  border: 1px dashed #ced8c9;
+  border-radius: 16px;
+  color: var(--muted);
+}
+.state-box .icon { font-size: 42px; margin-bottom: 10px; }
+
+/* How It Works Section */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.step-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green2);
+  font-weight: 800;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+}
+
+.step-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #173820;
+}
+
+.step-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* About Us Section */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-features {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.about-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.about-item .check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green2);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Contact Us Section */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 36px;
+}
+
+.contact-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-info-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--green-light);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: var(--green2);
+}
+
+/* Footer */
+footer {
+  background: #142a1b;
+  color: #d1ded6;
+  padding: 60px 0 25px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: #9ab1a3;
+  line-height: 1.6;
+}
+
+.footer-col h4 {
+  font-size: 15px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.footer-col ul { list-style: none; display: grid; gap: 10px; font-size: 13px; }
+.footer-col a:hover { color: #a4e59d; }
+
+.copyright {
+  border-top: 1px solid #233e2c;
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #799785;
+}
+
+/* Bulletproof Full-Screen Modals */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(16, 36, 22, 0.70);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 20px;
+}
+.modal-backdrop.open {
+  display: flex !important;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: 18px;
+  max-width: 480px;
+  width: 100%;
+  padding: 30px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.30);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalScale 0.2s ease-out;
+}
+@keyframes modalScale {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: 0;
+  background: #f1f5ee;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  color: #4c5d51;
+}
+
+.modal h2 { font-size: 22px; color: var(--green); margin-bottom: 6px; }
+.modal p.sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+/* Demo Quick Logins */
+.demo-box {
+  background: #f2f7ef;
+  border: 1px dashed #b9d8b1;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+.demo-box-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--green2);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.demo-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.btn-chip {
+  background: var(--white);
+  border: 1px solid #c2dbbc;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #244b2b;
+  cursor: pointer;
+}
+.btn-chip:hover {
+  background: var(--green-light);
+  border-color: var(--green2);
+}
+
+/* Price Calculation Box */
+.calc-box {
+  background: #f6fbf4;
+  border: 1px solid #d5ebd0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 14px 0;
+  font-size: 13px;
+  color: #2e4d36;
+}
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.calc-total {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--green);
+  border-top: 1px dashed #c0e0ba;
+  padding-top: 6px;
+  margin-top: 6px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #173b22;
+  color: var(--white);
+  padding: 14px 22px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 100000;
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-copy { margin: 0 auto; }
+  .hero-actions { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .equipment-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .search-box { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .equipment-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .search-box { grid-template-columns: 1fr; }
+  .navlinks { display: none; }
+  .menu-toggle { display: block; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">🌱</span>AgriRent
+    </a>
+
+    <nav class="navlinks" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#equipment">Browse Equipment</a>
+      <a href="#popular">Popular</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions" id="navActions">
+      <button class="btn btn-outline" id="loginNavBtn">Log In</button>
+      <a class="btn btn-primary" href="signup.html">Get Started →</a>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">🌾 Modern Agriculture Made Affordable</span>
+        <h1>Rent Smart. Farm Better.<br><span>Grow Together.</span></h1>
+        <p class="hero-copy">
+          AgriRent connects farmers with equipment owners. Rent tractors, harvesters, rotavators, and irrigation pumps easily without massive equipment purchase costs.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#equipment">Browse Equipment ↓</a>
+          <a class="btn btn-secondary" href="signup.html">List Your Machinery</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>50+</strong><span>Equipments</span></div>
+          <div class="hero-stat"><strong>100%</strong><span>Verified Owners</span></div>
+          <div class="hero-stat"><strong>₹0</strong><span>Registration Fee</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-art">
+          <div class="tractor-big">🚜</div>
+          <div class="floating-badge badge-1">
+            <strong>Mahindra 575 DI</strong>
+            <small>₹1,200 / day</small>
+          </div>
+          <div class="floating-badge badge-2">
+            <strong>Instant Request</strong>
+            <small>Available in your district</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search & Filter Section -->
+  <section class="container search-container" id="search-section">
+    <form class="search-box" id="searchForm">
+      <div class="field">
+        <label for="searchQuery">Search Equipment</label>
+        <input id="searchQuery" type="text" placeholder="e.g. Tractor, Harvester, Pump">
+      </div>
+      <div class="field">
+        <label for="categoryFilter">Category</label>
+        <select id="categoryFilter">
+          <option value="All">All Categories</option>
+          <option value="Tractors">Tractors</option>
+          <option value="Harvesters">Harvesters</option>
+          <option value="Tools">Tools & Tillers</option>
+          <option value="Irrigation">Irrigation Pumps</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="locationFilter">Village / District / City</label>
+        <input id="locationFilter" type="text" placeholder="e.g. Nashik, Pune">
+      </div>
+      <button class="btn btn-primary" type="submit">Search 🔍</button>
+    </form>
+  </section>
+
+  <!-- Popular Equipment Showcase -->
+  <section class="section section-soft" id="popular">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">⭐ Top Featured</span>
+        <h2>Popular Agricultural Machinery</h2>
+        <p>Highest requested machines by farmers this harvest season.</p>
+      </div>
+      <div class="equipment-grid" id="popularGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment Marketplace -->
+  <section class="section" id="equipment">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Equipment Marketplace</span>
+        <h2>Available Farm Machinery</h2>
+        <p>Explore equipment from verified owners in your farming community.</p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryPills">
+        <button class="cat-pill active" data-cat="All">All Equipment</button>
+        <button class="cat-pill" data-cat="Tractors">🚜 Tractors</button>
+        <button class="cat-pill" data-cat="Harvesters">🌾 Harvesters</button>
+        <button class="cat-pill" data-cat="Tools">⚙️ Tools & Tillers</button>
+        <button class="cat-pill" data-cat="Irrigation">💧 Irrigation</button>
+      </div>
+
+      <!-- Dynamic Cards Grid -->
+      <div class="equipment-grid" id="equipmentGrid">
+        <div class="state-box">
+          <div class="icon">🔄</div>
+          <h3>Loading equipment from database...</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section section-soft" id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Simple & Easy Process</span>
+        <h2>How AgriRent Works</h2>
+        <p>Four easy steps to rent the agricultural machinery you need.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Browse Machinery</h3>
+          <p>Search available tractors, tillers, harvesters and pumps by category and location.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Pick Your Dates</h3>
+          <p>Choose your rental start date and end date. The total price is calculated automatically.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Owner Approves</h3>
+          <p>The equipment owner reviews and confirms your request via their dashboard.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>Farm & Prosper</h3>
+          <p>Collect the equipment, complete your agricultural work efficiently, and return it safely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div style="background: linear-gradient(135deg, #e4f3de, #b8e0ab); height: 360px; border-radius: 24px; display: grid; place-items: center; font-size: 120px;">
+        👨‍🌾
+      </div>
+      <div>
+        <span class="eyebrow">About AgriRent</span>
+        <h2 style="font-size: 34px; line-height: 1.25; margin-top: 14px;">Empowering Farmers Through Shared Resources</h2>
+        <p style="color: var(--muted); margin-top: 14px; line-height: 1.7;">
+          AgriRent is an agricultural equipment rental platform created to bridge the gap between machinery owners and local farmers. By sharing farm machinery, we help small farmers cut operational costs while helping owners earn revenue from idle machines.
+        </p>
+        <div class="about-features">
+          <div class="about-item">
+            <span class="check">✓</span>
+            <div>
+              <strong>Affordable Farm Mechanization</strong>
+              <p style="font-size: 13px; color: var(--muted);">Pay only for the days you need without heavy loan obligations.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <span class="check">✓</span>
+            <div>
+              <strong>Earn from Idle Machinery</strong>
+              <p style="font-size: 13px; color: var(--muted);">Equipment owners can list machines and earn steady rental income.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <span class="check">✓</span>
+            <div>
+              <strong>Transparent & Direct Communication</strong>
+              <p style="font-size: 13px; color: var(--muted);">Direct contact between farmers and equipment owners.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="section section-soft" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Contact AgriRent Support</h2>
+        <p>Have questions about equipment rental? Our friendly support team is here to help.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Contact Information</h3>
+          <p style="color: var(--muted); font-size: 14px; margin-top: 6px;">Feel free to reach out to us directly through phone or email.</p>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <div class="contact-icon">📍</div>
+              <div><strong>Location:</strong><br><span style="color:var(--muted)">Agricultural Hub, College Campus</span></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-icon">📞</div>
+              <div><strong>Call Us:</strong><br><span style="color:var(--muted)">+91 98765 43210</span></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-icon">✉️</div>
+              <div><strong>Email Support:</strong><br><span style="color:var(--muted)">support@agrirent.example</span></div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-card" id="contactForm">
+          <h3>Send Us a Message</h3>
+          <p style="color: var(--muted); font-size: 13px; margin-bottom: 16px;">We respond within 24 hours.</p>
+          <div class="field" style="margin-bottom: 12px;">
+            <label for="contactName">Your Name</label>
+            <input id="contactName" type="text" placeholder="Enter your name" required>
+          </div>
+          <div class="field" style="margin-bottom: 12px;">
+            <label for="contactEmail">Email Address</label>
+            <input id="contactEmail" type="email" placeholder="name@example.com" required>
+          </div>
+          <div class="field" style="margin-bottom: 16px;">
+            <label for="contactMsg">Message / Query</label>
+            <textarea id="contactMsg" rows="3" style="width:100%; padding:10px; border:1px solid var(--line); border-radius:9px; background:#fbfdf9;" placeholder="How can we help you?" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%;">Submit Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="brand-mark">🌱</span>AgriRent</div>
+        <p class="footer-copy">
+          Agricultural Equipment Rental Management System. Designed to make modern farming tools accessible to every farmer.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#equipment">Browse Equipment</a></li>
+          <li><a href="#popular">Popular Machines</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>User Portal</h4>
+        <ul>
+          <li><a href="#" id="footerLogin">Sign In</a></li>
+          <li><a href="signup.html">Farmer Registration</a></li>
+          <li><a href="signup.html">Equipment Owner Registration</a></li>
+          <li><a href="dashboard.html">My Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>College Project</h4>
+        <ul>
+          <li>Agricultural Technology Project</li>
+          <li>Node.js + Express + SQLite</li>
+          <li>Clean Vanilla JS Frontend</li>
+          <li>1st-Year College Demonstration</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 AgriRent System. All rights reserved.</span>
+      <span>Empowering farmers with smart technology 🌾</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 1. Login Modal -->
+<div class="modal-backdrop" id="loginBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="closeLoginModal" type="button">×</button>
+    <h2>Welcome to AgriRent</h2>
+    <p class="sub">Log in to request rentals or manage your equipment.</p>
+
+    <!-- 1-Click Demo Logins for Viva/Testing -->
+    <div class="demo-box">
+      <div class="demo-box-title">⚡ Quick 1-Click Demo Logins (Viva Mode):</div>
+      <div class="demo-btns">
+        <button class="btn-chip" type="button" data-demo="farmer">👨‍🌾 Farmer</button>
+        <button class="btn-chip" type="button" data-demo="owner">🚜 Equipment Owner</button>
+        <button class="btn-chip" type="button" data-demo="admin">🛡️ Administrator</button>
+      </div>
+    </div>
+
+    <form id="loginForm">
+      <div class="field" style="margin-bottom: 12px;">
+        <label for="loginRole">Select Your Role</label>
+        <select id="loginRole">
+          <option value="Farmer">Farmer</option>
+          <option value="Equipment Owner">Equipment Owner</option>
+          <option value="Administrator">Administrator</option>
+        </select>
+      </div>
+      <div class="field" style="margin-bottom: 12px;">
+        <label for="loginEmail">Email Address</label>
+        <input id="loginEmail" type="email" placeholder="name@example.com" required>
+      </div>
+      <div class="field" style="margin-bottom: 16px;">
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" placeholder="Enter your password" required>
+      </div>
+      <div id="loginError" style="display:none; color:#c62828; font-size:13px; margin-bottom:12px;"></div>
+      <button class="btn btn-primary" type="submit" style="width:100%;">Sign In</button>
+    </form>
+    <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:16px;">
+      Don't have an account? <a href="signup.html" style="color:var(--green2); font-weight:700;">Create Account</a>
+    </p>
+  </div>
+</div>
+
+<!-- 2. Rental Request Modal -->
+<div class="modal-backdrop" id="rentalBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="closeRentalModal" type="button">×</button>
+    <h2>Request Equipment Rental</h2>
+    <p class="sub" id="rentalEquipSubtitle">Selected: Farm Machine</p>
+
+    <form id="rentalForm">
+      <input type="hidden" id="rentalEquipId">
+      <input type="hidden" id="rentalDailyPrice">
+
+      <div class="field" style="margin-bottom: 12px;">
+        <label for="rentStartDate">Start Date</label>
+        <input id="rentStartDate" type="date" required>
+      </div>
+      <div class="field" style="margin-bottom: 12px;">
+        <label for="rentEndDate">End Date</label>
+        <input id="rentEndDate" type="date" required>
+      </div>
+
+      <!-- Live Calculation Box -->
+      <div class="calc-box" id="calcBox">
+        <div class="calc-row"><span>Daily Rate:</span><span id="calcRate">₹0 / day</span></div>
+        <div class="calc-row"><span>Rental Duration:</span><span id="calcDays">0 days</span></div>
+        <div class="calc-row calc-total"><span>Total Estimate:</span><span id="calcTotal">₹0</span></div>
+      </div>
+
+      <div class="field" style="margin-bottom: 16px;">
+        <label for="rentMessage">Note for Owner (Optional)</label>
+        <textarea id="rentMessage" rows="2" style="width:100%; padding:10px; border:1px solid var(--line); border-radius:9px; background:#fbfdf9;" placeholder="Tell the owner your farm requirements..."></textarea>
+      </div>
+
+      <div id="rentalError" style="display:none; color:#c62828; font-size:13px; margin-bottom:12px;"></div>
+      <button class="btn btn-primary" type="submit" style="width:100%;">Submit Rental Request</button>
+    </form>
+  </div>
+</div>
+
+<!-- 3. Contact Owner Modal -->
+<div class="modal-backdrop" id="ownerContactBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="closeContactOwnerModal" type="button">×</button>
+    <h2>Equipment Owner Details</h2>
+    <p class="sub">Contact the verified machinery owner directly.</p>
+
+    <div style="background:var(--cream); border-radius:12px; padding:18px; margin-bottom:16px;">
+      <h3 id="ownerContactName" style="color:var(--green); font-size:18px; margin-bottom:8px;">Owner Name</h3>
+      <div style="font-size:14px; display:grid; gap:8px;">
+        <div>📞 <strong>Phone:</strong> <a id="ownerContactPhone" href="#" style="color:var(--green2); font-weight:700;"></a></div>
+        <div>✉️ <strong>Email:</strong> <a id="ownerContactEmail" href="#" style="color:var(--green2);"></a></div>
+        <div>📍 <strong>Location:</strong> <span id="ownerContactLocation"></span></div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="button" id="dismissOwnerContactBtn" style="width:100%;">Close</button>
+  </div>
+</div>
+
+<!-- Toast Alert -->
+<div class="toast" id="toast"></div>
+
+<!-- JavaScript Integration -->
+<script>
+let currentUser = null;
+const equipmentCache = new Map();
+
+// Helper API Caller
+async function callApi(path, options = {}) {
+  const opts = {
+    method: options.method || 'GET',
+    headers: options.body ? { 'Content-Type': 'application/json' } : {}
+  };
+  if (options.body) opts.body = JSON.stringify(options.body);
+
+  const res = await fetch(path, opts);
+  let data = {};
+  try { data = await res.json(); } catch (_) {}
+  if (!res.ok) {
+    throw new Error(data.error || 'Server request failed.');
+  }
+  return data;
+}
+
+// Toast Display
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.style.display = 'block';
+  setTimeout(() => { toast.style.display = 'none'; }, 4000);
+}
+
+// Render Header Nav Based on Auth State
+function renderNavbar() {
+  const container = document.getElementById('navActions');
+  if (currentUser) {
+    const firstName = currentUser.name.split(' ')[0];
+    container.innerHTML = `
+      <span style="font-size:13px; font-weight:700; color:var(--green);">👋 ${esc(firstName)} (${esc(currentUser.role)})</span>
+      <a class="btn btn-secondary" href="dashboard.html" style="padding:8px 14px; font-size:13px;">📊 My Dashboard</a>
+      <button class="btn btn-outline" id="logoutBtn" type="button" style="padding:8px 14px; font-size:13px;">Log Out</button>
+    `;
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await callApi('/api/auth/logout', { method: 'POST' });
+      currentUser = null;
+      renderNavbar();
+      showToast('Logged out successfully.');
+    });
+  } else {
+    container.innerHTML = `
+      <button class="btn btn-outline" id="loginNavBtn" type="button">Log In</button>
+      <a class="btn btn-primary" href="signup.html">Get Started →</a>
+    `;
+    document.getElementById('loginNavBtn').addEventListener('click', () => openLoginModal());
+  }
+}
+
+// Escape HTML utility
+function esc(str) {
+  return String(str || '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+// Cache equipment items helper
+function storeEquipment(items) {
+  if (Array.isArray(items)) {
+    items.forEach(it => {
+      if (it && it.id) equipmentCache.set(Number(it.id), it);
+    });
+  }
+}
+
+// Retrieve equipment by ID from cache or API fallback
+async function getEquipment(id) {
+  const numId = Number(id);
+  if (equipmentCache.has(numId)) {
+    return equipmentCache.get(numId);
+  }
+  try {
+    const data = await callApi('/api/equipment/' + numId);
+    if (data.equipment) {
+      equipmentCache.set(numId, data.equipment);
+      return data.equipment;
+    }
+  } catch (_) {}
+  return null;
+}
+
+// Load Equipment Cards dynamically from SQLite Database
+async function loadMarketplaceEquipment() {
+  const grid = document.getElementById('equipmentGrid');
+  const q = document.getElementById('searchQuery').value.trim();
+  const cat = document.getElementById('categoryFilter').value;
+  const loc = document.getElementById('locationFilter').value.trim();
+
+  const params = new URLSearchParams();
+  if (q) params.set('q', q);
+  if (cat && cat !== 'All') params.set('category', cat);
+  if (loc) params.set('location', loc);
+
+  try {
+    const data = await callApi('/api/equipment?' + params.toString());
+    const items = data.equipment || [];
+    storeEquipment(items);
+    renderCards(items, grid, false);
+  } catch (err) {
+    grid.innerHTML = `<div class="state-box"><div class="icon">⚠️</div><h3>Could not connect to database.</h3><p>${esc(err.message)}</p></div>`;
+  }
+}
+
+// Load Popular Equipment
+async function loadPopularEquipment() {
+  const grid = document.getElementById('popularGrid');
+  try {
+    const data = await callApi('/api/equipment?popular=1');
+    const items = data.equipment || [];
+    storeEquipment(items);
+    renderCards(items, grid, true);
+  } catch (_) {}
+}
+
+// Render Equipment Cards with both data-action AND onclick for bulletproof compatibility
+function renderCards(items, container, isPopular = false) {
+  if (!items || items.length === 0) {
+    container.innerHTML = `
+      <div class="state-box">
+        <div class="icon">🌾</div>
+        <h3>No equipment found</h3>
+        <p>Try searching for a different machinery name, category, or village/city.</p>
+      </div>
+    `;
+    return;
+  }
+
+  const artColors = { Tractors: '', Harvesters: 'orange', Tools: 'blue', Irrigation: 'blue' };
+
+  container.innerHTML = items.map(item => `
+    <article class="equipment-card">
+      <div class="equipment-art ${artColors[item.category] || ''}">
+        ${isPopular ? '<span class="badge-tag">⭐ Popular Choice</span>' : `<span class="badge-tag">${esc(item.category)}</span>`}
+        <span class="status-badge ${item.available ? 'status-available' : 'status-busy'}">
+          ${item.available ? '🟢 Available' : '🔴 In Use'}
+        </span>
+        ${esc(item.icon || '🚜')}
+      </div>
+      <div class="equipment-body">
+        <div class="equipment-category">${esc(item.category)}</div>
+        <h3>${esc(item.name)}</h3>
+        <p class="location">📍 ${esc(item.location || 'Location upon request')}</p>
+        <p class="equipment-desc">${esc(item.description)}</p>
+        <div class="equipment-footer">
+          <div class="price-tag">
+            ₹${Number(item.price_per_day).toLocaleString('en-IN')} <small>/ day</small>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-secondary btn-sm" type="button" data-action="contact" data-id="${item.id}" onclick="openOwnerContact(${item.id})">📞 Contact</button>
+            <button class="btn btn-primary btn-sm" type="button" data-action="rent" data-id="${item.id}" onclick="openRentalModal(${item.id})">Rent →</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+// Contact Owner Modal
+async function openOwnerContact(id) {
+  const item = await getEquipment(id);
+  if (!item) {
+    showToast('Equipment information could not be retrieved.');
+    return;
+  }
+
+  document.getElementById('ownerContactName').textContent = item.owner_name || 'Verified Equipment Owner';
+  const phoneEl = document.getElementById('ownerContactPhone');
+  phoneEl.textContent = item.owner_phone || '+91 98765 43210';
+  phoneEl.href = 'tel:' + (item.owner_phone || '');
+
+  const emailEl = document.getElementById('ownerContactEmail');
+  emailEl.textContent = item.owner_email || 'owner@agrirent.example';
+  emailEl.href = 'mailto:' + (item.owner_email || '');
+
+  document.getElementById('ownerContactLocation').textContent = item.location || 'Local district';
+  document.getElementById('ownerContactBackdrop').classList.add('open');
+}
+
+function closeOwnerContactModal() {
+  document.getElementById('ownerContactBackdrop').classList.remove('open');
+}
+document.getElementById('closeContactOwnerModal').addEventListener('click', closeOwnerContactModal);
+document.getElementById('dismissOwnerContactBtn').addEventListener('click', closeOwnerContactModal);
+
+// Rental Request Flow
+async function openRentalModal(id) {
+  if (!currentUser) {
+    openLoginModal();
+    showToast('Please sign in first to rent equipment.');
+    return;
+  }
+  if (currentUser.role !== 'Farmer') {
+    showToast('Only registered Farmers can submit rental requests.');
+    return;
+  }
+
+  const item = await getEquipment(id);
+  if (!item) {
+    showToast('Equipment details could not be loaded.');
+    return;
+  }
+
+  document.getElementById('rentalEquipId').value = item.id;
+  document.getElementById('rentalDailyPrice').value = item.price_per_day;
+  document.getElementById('rentalEquipSubtitle').textContent = `${item.name} (${item.category}) - ₹${item.price_per_day}/day`;
+
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const startEl = document.getElementById('rentStartDate');
+  const endEl = document.getElementById('rentEndDate');
+  startEl.value = todayStr;
+  startEl.min = todayStr;
+  endEl.value = todayStr;
+  endEl.min = todayStr;
+
+  calculateRentalPrice();
+  document.getElementById('rentalError').style.display = 'none';
+  document.getElementById('rentalBackdrop').classList.add('open');
+}
+
+function calculateRentalPrice() {
+  const start = document.getElementById('rentStartDate').value;
+  const end = document.getElementById('rentEndDate').value;
+  const price = Number(document.getElementById('rentalDailyPrice').value) || 0;
+
+  if (start && end && end >= start) {
+    const days = Math.round((new Date(end) - new Date(start)) / 86400000) + 1;
+    const total = days * price;
+    document.getElementById('calcRate').textContent = `₹${price.toLocaleString('en-IN')} / day`;
+    document.getElementById('calcDays').textContent = `${days} day${days > 1 ? 's' : ''}`;
+    document.getElementById('calcTotal').textContent = `₹${total.toLocaleString('en-IN')}`;
+  } else {
+    document.getElementById('calcDays').textContent = '0 days';
+    document.getElementById('calcTotal').textContent = '₹0';
+  }
+}
+
+document.getElementById('rentStartDate').addEventListener('change', e => {
+  document.getElementById('rentEndDate').min = e.target.value;
+  calculateRentalPrice();
+});
+document.getElementById('rentEndDate').addEventListener('change', calculateRentalPrice);
+
+document.getElementById('rentalForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const errBox = document.getElementById('rentalError');
+  errBox.style.display = 'none';
+
+  try {
+    const res = await callApi('/api/rentals', {
+      method: 'POST',
+      body: {
+        equipment_id: document.getElementById('rentalEquipId').value,
+        start_date: document.getElementById('rentStartDate').value,
+        end_date: document.getElementById('rentEndDate').value,
+        message: document.getElementById('rentMessage').value
+      }
+    });
+
+    document.getElementById('rentalBackdrop').classList.remove('open');
+    showToast(`Rental request submitted! Total: ₹${res.rental.total_price.toLocaleString('en-IN')}`);
+  } catch (err) {
+    errBox.textContent = err.message;
+    errBox.style.display = 'block';
+  }
+});
+document.getElementById('closeRentalModal').addEventListener('click', () => {
+  document.getElementById('rentalBackdrop').classList.remove('open');
+});
+
+// Category Filter Pills Handler
+document.getElementById('categoryPills').addEventListener('click', e => {
+  if (e.target.classList.contains('cat-pill')) {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('categoryFilter').value = e.target.dataset.cat;
+    loadMarketplaceEquipment();
+  }
+});
+
+// Search Form Submission
+document.getElementById('searchForm').addEventListener('submit', e => {
+  e.preventDefault();
+  loadMarketplaceEquipment();
+  document.getElementById('equipment').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Login Modal
+const loginBackdrop = document.getElementById('loginBackdrop');
+function openLoginModal() {
+  loginBackdrop.classList.add('open');
+}
+document.getElementById('closeLoginModal').addEventListener('click', () => {
+  loginBackdrop.classList.remove('open');
+});
+document.getElementById('footerLogin').addEventListener('click', e => {
+  e.preventDefault();
+  openLoginModal();
+});
+
+// Demo 1-Click Login Function
+async function loginDemo(roleType) {
+  try {
+    const data = await callApi('/api/auth/demo-login', {
+      method: 'POST',
+      body: { type: roleType }
+    });
+    currentUser = data.user;
+    renderNavbar();
+    loginBackdrop.classList.remove('open');
+    showToast(`Logged in as ${currentUser.name}!`);
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+  } catch (err) {
+    showToast(err.message);
+  }
+}
+
+// Global Event Delegation for buttons
+document.addEventListener('click', e => {
+  // Rent Button delegation
+  const rentBtn = e.target.closest('[data-action="rent"]');
+  if (rentBtn) {
+    e.preventDefault();
+    const id = rentBtn.dataset.id;
+    openRentalModal(id);
+    return;
+  }
+
+  // Contact Button delegation
+  const contactBtn = e.target.closest('[data-action="contact"]');
+  if (contactBtn) {
+    e.preventDefault();
+    const id = contactBtn.dataset.id;
+    openOwnerContact(id);
+    return;
+  }
+
+  // Demo Login Chip delegation
+  const demoChip = e.target.closest('[data-demo]');
+  if (demoChip) {
+    e.preventDefault();
+    loginDemo(demoChip.dataset.demo);
+    return;
+  }
+
+  // Clicking outside any modal backdrop closes it
+  if (e.target.classList.contains('modal-backdrop')) {
+    e.target.classList.remove('open');
+  }
+});
+
+// Expose functions globally for direct onclick
+window.openRentalModal = openRentalModal;
+window.openOwnerContact = openOwnerContact;
+window.loginDemo = loginDemo;
+window.closeOwnerContactModal = closeOwnerContactModal;
+
+// Login Form Submit
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const errBox = document.getElementById('loginError');
+  errBox.style.display = 'none';
+
+  try {
+    const data = await callApi('/api/auth/login', {
+      method: 'POST',
+      body: {
+        email: document.getElementById('loginEmail').value,
+        password: document.getElementById('loginPassword').value,
+        role: document.getElementById('loginRole').value
+      }
+    });
+    currentUser = data.user;
+    renderNavbar();
+    loginBackdrop.classList.remove('open');
+    showToast(`Welcome back, ${currentUser.name}!`);
+  } catch (err) {
+    errBox.textContent = err.message;
+    errBox.style.display = 'block';
+  }
+});
+
+// Contact Form Submit
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  showToast('Thank you! Your message has been sent to AgriRent support.');
+  e.target.reset();
+});
+
+// Initialize on Load
+(async () => {
+  try {
+    const data = await callApi('/api/auth/me');
+    currentUser = data.user;
+  } catch (_) {}
+
+  renderNavbar();
+  await loadMarketplaceEquipment();
+  await loadPopularEquipment();
+
+  if (sessionStorage.getItem('openLogin')) {
+    sessionStorage.removeItem('openLogin');
+    if (!currentUser) openLoginModal();
+  }
+})();
+</script>
+</body>
+</html>
